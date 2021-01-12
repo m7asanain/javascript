@@ -74,17 +74,31 @@
 
 // console.log(maxIndex);
 
+// 194
+
+// const prices = [10.99, 5.99, 3.99, 5.59];
+// const tax = 0.19;
+// const taxAdjustedPrace = [];
+
+// // for (const price of prices) {
+// //   taxAdjustedPrace.push(price * (1 + tax));
+// // }
+
+// prices.forEach((price, idx, prices) => {
+//   const priceObj = { index: idx, taxAdjustedPrace: price * (1 + tax) };
+//   taxAdjustedPrace.push(priceObj)
+// });
+
+// console.log(taxAdjustedPrace);
+
+// 195
+
 const prices = [10.99, 5.99, 3.99, 5.59];
 const tax = 0.19;
-const taxAdjustedPrace = [];
 
-// for (const price of prices) {
-//   taxAdjustedPrace.push(price * (1 + tax));
-// }
-
-prices.forEach((price, idx, prices) => {
+const taxAdjustedPrace = prices.map((price, idx, prices) => {
   const priceObj = { index: idx, taxAdjustedPrace: price * (1 + tax) };
-  taxAdjustedPrace.push(priceObj);
+  return priceObj;
 });
 
 console.log(taxAdjustedPrace);
