@@ -91,7 +91,7 @@
 
 // console.log(taxAdjustedPrace);
 
-// 195 + 196
+// 195 + 196 + 197
 
 const prices = [10.99, 5.99, 3.99, 6.59];
 const tax = 0.19;
@@ -114,3 +114,9 @@ const sortedPrices = prices.sort((a, b) => {
 });
 // console.log(sortedPrices.reverse());
 console.log(sortedPrices);
+
+const filteredArray = prices.filter((price, index, prices) => {
+  return price > 6;
+});
+
+console.log(filteredArray);
