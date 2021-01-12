@@ -122,3 +122,23 @@ console.log(sortedPrices);
 const filteredArray = prices.filter(price => price > 6);
 
 console.log(filteredArray);
+
+// 199
+
+// method 1
+
+// let sum = 0;
+
+// prices.forEach((prices) => {
+//   sum += prices;
+// });
+
+// console.log(sum);
+
+// method 2
+
+const sum = prices.reduce((prevValue, CurValue) => {
+  return prevValue + CurValue;
+});
+
+console.log(sum);
