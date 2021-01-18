@@ -17,24 +17,24 @@ const randerMovie = (filter = '') => {
   filterdMovies.forEach((movie) => {
     const movieEl = document.createElement('li');
     const { info, ...otherProps } = movie;
-    // console.log(otherProps);
+    console.log(otherProps);
     // const { title: movieTitle } = info;
     let { getFormatedTitle } = movie;
-    getFormatedTitle = getFormatedTitle.bind(movie);
+    // getFormatedTitle = getFormatedTitle.bind(movie);
     let text = getFormatedTitle.call(movie) + ' - ';
     for (const key in info) {
-      if (key !== 'title') {
+      if (key !== 'title' && key !== '_title') {
         text = text + `${key}: ${info[key]}`;
       }
     }
-    movieList.append(movieEl);
     movieEl.textContent = text;
+    movieList.append(movieEl);
   });
 };
 
 const addMovieHandler = () => {
 //  // getting input here
-  // const title = document.getElementById('title').value;
+  const title = document.getElementById('title').value;
   const exteraName = document.getElementById('extra-name').value;
   const exteraValue = document.getElementById('extra-value').value;
 //
@@ -49,36 +49,39 @@ const addMovieHandler = () => {
 //  // set an object for the array
   const newMovie = {
     info: {
-      // title: title,
+      // title,
+      set title(val) {
+        if (val.trim() === '') {
+          this._title = 'DEFAULT';
+          return;
+        }
+        this._title = val;
+      },
+      get title() {
+        return this._title;
+      },
       [exteraName]: exteraValue
-    },
-    set title(val) {
-      if (val.trim() === '') {
-        this._title = 'DEFAULT';
-        return;
-      }
-      this._title = val;
-    },
-    get title() {
-      return this._title;
     },
     id: Math.random().toString(),
     // getFormatedTitle: function() {
     getFormatedTitle() {
       return this.info.title.toUpperCase();
     }
-  }
+  };
+
+  newMovie.info.title = title;
+  console.log(newMovie.info.title);
 
   movies.push(newMovie);
-  randerMovies();
+  randerMovie();
   console.log(movies);
 
 };
 
 const searchMovieHandler = () => {
   const filterTerm = document.getElementById('filter-title').value;
-  randerMovies(filterTerm);
+  randerMovie(filterTerm);
 };
 
 addMovieBtn.addEventListener('click', addMovieHandler);
-searchBtn.addEventListener('click', searchMovieHandler);
+searchBtn.addEventListener('click', searchMovieHandler);0
