@@ -1,3 +1,4 @@
+"use strict";
 const addMovieBtn = document.getElementById('add-movie-btn');
 const searchBtn = document.getElementById('search-btn');
 
@@ -16,11 +17,11 @@ const randerMovie = (filter = '') => {
   filterdMovies.forEach((movie) => {
     const movieEl = document.createElement('li');
     const { info, ...otherProps } = movie;
-    console.log(otherProps);
+    // console.log(otherProps);
     // const { title: movieTitle } = info;
     let { getFormatedTitle } = movie;
     getFormatedTitle = getFormatedTitle.bind(movie);
-    let text = getFormatedTitle() + ' - ';
+    let text = getFormatedTitle.call(movie) + ' - ';
     for (const key in info) {
       if (key !== 'title') {
         text = text + `${key}: ${info[key]}`;
@@ -28,18 +29,17 @@ const randerMovie = (filter = '') => {
     }
     movieList.append(movieEl);
     movieEl.textContent = text;
-    
   });
 };
 
 const addMovieHandler = () => {
 //  // getting input here
-  const title = document.getElementById('title').value;
+  // const title = document.getElementById('title').value;
   const exteraName = document.getElementById('extra-name').value;
   const exteraValue = document.getElementById('extra-value').value;
 //
   if (
-    title.trim() === '' ||
+    // title.trim() === '' ||
     exteraName.trim() === '' ||
     exteraValue.trim() === ''
   ) {
@@ -49,8 +49,18 @@ const addMovieHandler = () => {
 //  // set an object for the array
   const newMovie = {
     info: {
-      title: title,
+      // title: title,
       [exteraName]: exteraValue
+    },
+    set title(val) {
+      if (val.trim() === '') {
+        this._title = 'DEFAULT';
+        return;
+      }
+      this._title = val;
+    },
+    get title() {
+      return this._title;
     },
     id: Math.random().toString(),
     // getFormatedTitle: function() {
@@ -60,14 +70,14 @@ const addMovieHandler = () => {
   }
 
   movies.push(newMovie);
-  randerMovie();
+  randerMovies();
   console.log(movies);
 
 };
 
 const searchMovieHandler = () => {
   const filterTerm = document.getElementById('filter-title').value;
-  randerMovie(filterTerm);
+  randerMovies(filterTerm);
 };
 
 addMovieBtn.addEventListener('click', addMovieHandler);
