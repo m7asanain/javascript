@@ -4,25 +4,31 @@ class Product {
     dsescription;
     price;
 
+    constructor(title, image, dsec, price) {
+        this.title = title;
+        this.imageUrl = image;
+        this.dsescription = dsec;
+        this.price = price;
+    }
+
 }
 
-console.log(new Product());
+// console.log(new Product());
 
 const productList = {
     products: [
-        // new Product(),
-        {
-            title: 'A Pillow',
-            imageUrl: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/ghi-best-pillows-1573668641.png?crop=0.946xw:0.727xh;0.0288xw,0.163xh&resize=1200:*',
-            dsescription: 'A soft pillow',
-            price: 19.99
-        },
-        {
-            title: 'A Carpit',
-            imageUrl: 'https://i.pinimg.com/236x/a1/43/be/a143bebe70cbb2b48826e04c833e39fc--turkish-carpets-magic-carpet.jpg',
-            dsescription: 'A Carpit which you might like - or not!',
-            price: 89.99
-        }
+        new Product(
+            'A Pillow',
+            'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/ghi-best-pillows-1573668641.png?crop=0.946xw:0.727xh;0.0288xw,0.163xh&resize=1200:*',
+            'A soft pillow', 
+            19.99
+        ),
+        new Product(
+            'A Carpit',
+            'https://i.pinimg.com/236x/a1/43/be/a143bebe70cbb2b48826e04c833e39fc--turkish-carpets-magic-carpet.jpg',
+            'A Carpit which you might like - or not!',
+            89.99
+        ),
     ],
     render() {
         const renderHook = document.getElementById('app');
