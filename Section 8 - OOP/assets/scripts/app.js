@@ -1,5 +1,16 @@
+class Product {
+    title = 'DEFAULT';
+    imageUrl;
+    dsescription;
+    price;
+
+}
+
+console.log(new Product());
+
 const productList = {
     products: [
+        // new Product(),
         {
             title: 'A Pillow',
             imageUrl: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/ghi-best-pillows-1573668641.png?crop=0.946xw:0.727xh;0.0288xw,0.163xh&resize=1200:*',
