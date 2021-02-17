@@ -12,6 +12,19 @@ class Product {
     };
 }
 
+class ShoppingCart {
+    items = [];
+    render() {
+        const cartEl = document.createElement('section');
+        cartEl.innerHTML = `
+            <h2>Total: \$${0}</h2>
+            <button>Order Now!</button>
+        `;
+        cartEl.className = 'cart';
+        return cartEl;
+    }
+}
+
 // console.log(new Product());
 
 class ProductItems {
@@ -60,7 +73,8 @@ class ProductList {
         ),
     ];
     render() {
-        const renderHook = document.getElementById('app');
+        // #3
+        // const renderHook = document.getElementById('app');
         const prodList = document.createElement('ul');
         prodList.className = 'product-list';
         for (const prod of this.products) {
@@ -81,7 +95,8 @@ class ProductList {
             // `;
             prodList.append(prodEl);
         }
-        renderHook.append(prodList);
+        // renderHook.append(prodList);
+        return prodList;
     };
 }
 
@@ -128,5 +143,28 @@ class ProductList {
 
 // productList.render();
 
-const productList = new ProductList();
-productList.render();
+class Shop {
+    render() {
+        // #4
+        const renderHook = document.getElementById('app');
+
+        // #2
+        const cart = new ShoppingCart();
+        const cartEl = cart.render();
+
+        const productList = new ProductList();
+        const prodListEl = productList.render();
+
+        
+        renderHook.append(cartEl);
+        renderHook.append(prodListEl);
+    }
+}
+
+// #1
+// const productList = new ProductList();
+// productList.render();
+
+
+const shop = new Shop();
+shop.render();
