@@ -14,6 +14,12 @@ class Product {
 
 class ShoppingCart {
     items = [];
+
+    addProduct(product) {
+        this.items.push(product);
+        this.totalOutput.innerHTML = `<h2>Total: \$${1}</h2>`;
+    };
+
     render() {
         const cartEl = document.createElement('section');
         cartEl.innerHTML = `
@@ -21,8 +27,9 @@ class ShoppingCart {
             <button>Order Now!</button>
         `;
         cartEl.className = 'cart';
+        this.totalOutput = cartEl.querySelector('h2');
         return cartEl;
-    }
+    };
 }
 
 // console.log(new Product());
@@ -33,8 +40,7 @@ class ProductItems {
     };
 
     addToCart() {
-        console.log('Adding to Cart...');
-        console.log(this.product);
+        App.addProductToCart(this.product);
     };
 
     render() {
@@ -149,9 +155,8 @@ class Shop {
         const renderHook = document.getElementById('app');
 
         // #2
-        const cart = new ShoppingCart();
-        const cartEl = cart.render();
-
+        this.cart = new ShoppingCart();
+        const cartEl = this.cart.render();
         const productList = new ProductList();
         const prodListEl = productList.render();
 
@@ -165,6 +170,18 @@ class Shop {
 // const productList = new ProductList();
 // productList.render();
 
+class App {
+    static cart;
+    
+    static init() {
+        const shop = new Shop();
+        shop.render();
+        this.cart = shop.cart;
+    }
 
-const shop = new Shop();
-shop.render();
+    static addProductToCart(product) {
+        this.cart.addProduct(product);
+    }
+}
+
+App.init();
