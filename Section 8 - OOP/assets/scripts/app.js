@@ -1,4 +1,4 @@
-class product {
+class Product {
     constructor(title, image, desc, price) {
         this.title = title;
         this.imageUrl = image;
@@ -10,6 +10,11 @@ class product {
 class ShoppingCart {
     items = [];
 
+    addProduct(product) {
+        this.items.push(product);
+        this.totalOutput.innerHTML = `<h2>Total: \$${1}</h2>`;
+    }
+
     render() {
         const cartEl = document.createElement('section');
         cartEl.innerHTML = `
@@ -17,6 +22,7 @@ class ShoppingCart {
             <button>Order Now!</button>
         `;
         cartEl.className = 'cart';
+        this.totalOutput = cartEl.querySelector('h2');
         return cartEl;
     }
 }
@@ -27,8 +33,7 @@ class ProductItem {
     }
 
     addToCart() {
-        console.log('you are adding..');
-        console.log(this.product);
+        App.addProductToCart(this.product);
     }
 
     render() {
@@ -53,16 +58,16 @@ class ProductItem {
 
 class ProductList {
     products = [
-        new product(
+        new Product(
             'A Pillow',
             'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/ghi-best-pillows-1573668641.png?crop=0.946xw:0.727xh;0.0288xw,0.163xh&resize=1200:*',
             'A soft pillow',
             19.99
         ),
-        new product(
-            'A Carpit',
+        new Product(
+            'A Carpet',
             'https://i.pinimg.com/236x/a1/43/be/a143bebe70cbb2b48826e04c833e39fc--turkish-carpets-magic-carpet.jpg',
-            'A Carpit which you might like - or not!',
+            'A Carpet which you might like - or not!',
             89.99
         ),
     ];
@@ -82,10 +87,12 @@ class ProductList {
 }
 
 class Shop {
+
     render() {
         const renderHook = document.getElementById('app');
-        const cart = new ShoppingCart();
-        const cartEl = cart.render();      // not used
+
+        this.cart = new ShoppingCart();
+        const cartEl = this.cart.render();      // not used
         const productList = new ProductList;
         const prodListEl = productList.render();       // not used
 
@@ -94,6 +101,18 @@ class Shop {
     }
 }
 
-const shop = new Shop();
-shop.render();
+class App {
+    static init() {
+        const shop = new Shop();
+        shop.render();
+        this.cart = shop.cart;
+    }
+    static addProductToCart(product) {
+        this.cart.addProduct(product);
+    }
+}
+
+App.init();
+
+
 
