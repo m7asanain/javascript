@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f4ededf0-2ae7-4e13-9b3f-6813f99a1463" name="Default Changelist" comment="Getters &amp; Setters">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Section 8 - OOP/assets/scripts/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/Section 8 - OOP/assets/scripts/app.js" afterDir="false" />
-    </list>
+    <list default="true" id="f4ededf0-2ae7-4e13-9b3f-6813f99a1463" name="Default Changelist" comment="Using Inheritance Everywhere /w error" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -38,7 +35,7 @@
       <updated>1617217439736</updated>
       <workItem from="1617217440837" duration="10607000" />
       <workItem from="1617355411814" duration="111000" />
-      <workItem from="1617355602525" duration="1926000" />
+      <workItem from="1617355602525" duration="2151000" />
     </task>
     <task id="LOCAL-00001" summary="Using &amp; &quot;Connecting&quot; Multiple Classes">
       <created>1617229302239</created>
@@ -82,7 +79,14 @@
       <option name="project" value="LOCAL" />
       <updated>1617280704675</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Using Inheritance Everywhere">
+      <created>1617357656564</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1617357656564</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -107,6 +111,7 @@
     <MESSAGE value="Adding a Cart and Shop Class" />
     <MESSAGE value="Static Methods &amp; Properties" />
     <MESSAGE value="Getters &amp; Setters" />
-    <option name="LAST_COMMIT_MESSAGE" value="Getters &amp; Setters" />
+    <MESSAGE value="Using Inheritance Everywhere" />
+    <option name="LAST_COMMIT_MESSAGE" value="Using Inheritance Everywhere" />
   </component>
 </project>
