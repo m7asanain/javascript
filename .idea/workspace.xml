@@ -36,6 +36,7 @@
       <workItem from="1617217440837" duration="10607000" />
       <workItem from="1617355411814" duration="111000" />
       <workItem from="1617355602525" duration="2151000" />
+      <workItem from="1617357795668" duration="70000" />
     </task>
     <task id="LOCAL-00001" summary="Using &amp; &quot;Connecting&quot; Multiple Classes">
       <created>1617229302239</created>
@@ -86,7 +87,14 @@
       <option name="project" value="LOCAL" />
       <updated>1617357656564</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Using Inheritance Everywhere /w error">
+      <created>1617357814090</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1617357814090</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -112,6 +120,7 @@
     <MESSAGE value="Static Methods &amp; Properties" />
     <MESSAGE value="Getters &amp; Setters" />
     <MESSAGE value="Using Inheritance Everywhere" />
-    <option name="LAST_COMMIT_MESSAGE" value="Using Inheritance Everywhere" />
+    <MESSAGE value="Using Inheritance Everywhere /w error" />
+    <option name="LAST_COMMIT_MESSAGE" value="Using Inheritance Everywhere /w error" />
   </component>
 </project>
