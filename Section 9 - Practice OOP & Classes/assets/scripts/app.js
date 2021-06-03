@@ -1,20 +1,19 @@
 class Tooltip {}
 
 class ProjectItem {
-    constructor(id) {
+    constructor(id, updateProjectListsFunction) {
         this.id = id;
+        this.updateProjectListHadler = updateProjectListsFunction;
         this.connectMoreInfoButton();
         this.connectSwitchButton();
     }
 
-    connectMoreInfoButton() {
-
-    }
+    connectMoreInfoButton() {}
 
     connectSwitchButton() {
         const projectItemElement = document.getElementById(this.id);
         const switchBtn = projectItemElement.querySelector('button:last-of-type');
-        switchBtn.addEventListener('click', );
+        switchBtn.addEventListener('click', this.updateProjectListHadler);
     }
 }
 
@@ -22,21 +21,26 @@ class ProjectList {
     products = [];
 
     constructor(type) {
+        this.type = type;
         const projItems = document.querySelectorAll(`#${type}-projects li`);
         for (const projItem of projItems) {
-            this.products.push(new ProjectItem(projItem.id))
+            this.products.push(new ProjectItem(projItem.id, this.switchProject.bind(this)));
         }
         console.log(this.products);
     }
 
-    addProject() {
+    setSwitchHandlerFunction(switchHandlerFunction) {
+        this.switchHandler = switchHandlerFunction;
+    }
 
+    addProject() {
+        console.log(this);
     }
 
     switchProject(productId) {
         // const productsIndex = this.products.findIndex(p => p.id === productId);
         // this.products.slice(productsIndex, 1);
-        this.addProject();
+        this.switchHandler(this.products.find(p => p.id === productId));
         this.products = this.products.filter(p => p.id !== productId);
     }
 }
@@ -45,6 +49,8 @@ class App {
     static init() {
         const activeProjectsList = new ProjectList('active');
         const finishedProjectsList = new ProjectList('finished');
+        activeProjectsList.setSwitchHandlerFunction(finishedProjectsList.addProject.bind(finishedProjectsList));
+        finishedProjectsList.setSwitchHandlerFunction(activeProjectsList.addProject.bind(activeProjectsList));
     }
 }
 
