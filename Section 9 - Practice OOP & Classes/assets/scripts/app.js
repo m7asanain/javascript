@@ -1,47 +1,70 @@
+class DOMHelper {
+    static clearEventListeners(element) {
+        const clonedElement = element.cloneNode(true);
+        element.replaceWith(clonedElement);
+        return clonedElement;
+    }
+
+    static moveElement(elementId, newDestinationSelector) {
+        const element = document.getElementById(elementId);
+        const destinationElement = document.querySelector(newDestinationSelector);
+        destinationElement.append(element);
+    }
+}
+
 class Tooltip {}
 
 class ProjectItem {
-    constructor(id, updateProjectListsFunction) {
+    constructor(id, updateProjectListsFunction, type) {
         this.id = id;
         this.updateProjectListHadler = updateProjectListsFunction;
         this.connectMoreInfoButton();
-        this.connectSwitchButton();
+        this.connectSwitchButton(type);
     }
 
     connectMoreInfoButton() {}
 
-    connectSwitchButton() {
+    connectSwitchButton(type) {
         const projectItemElement = document.getElementById(this.id);
-        const switchBtn = projectItemElement.querySelector('button:last-of-type');
-        switchBtn.addEventListener('click', this.updateProjectListHadler);
+        let switchBtn = projectItemElement.querySelector('button:last-of-type');
+        switchBtn = DOMHelper.clearEventListeners(switchBtn);
+        switchBtn.textContent = type === 'active' ? 'finish' : 'Activate';
+        switchBtn.addEventListener('click', this.updateProjectListHadler.bind(null, this.id));
+    }
+
+    update(updateProjectListFn, type) {
+        this.updateProjectListHadler = updateProjectListFn;
+        this.connectSwitchButton(type);
     }
 }
 
 class ProjectList {
-    products = [];
+    porjects = [];
 
     constructor(type) {
         this.type = type;
         const projItems = document.querySelectorAll(`#${type}-projects li`);
         for (const projItem of projItems) {
-            this.products.push(new ProjectItem(projItem.id, this.switchProject.bind(this)));
+            this.porjects.push(new ProjectItem(projItem.id, this.switchProject.bind(this), this.type));
         }
-        console.log(this.products);
+        console.log(this.porjects);
     }
 
     setSwitchHandlerFunction(switchHandlerFunction) {
         this.switchHandler = switchHandlerFunction;
     }
 
-    addProject() {
-        console.log(this);
+    addProject(project) {
+        this.porjects.push(project);
+        DOMHelper.moveElement(project.id, `#${this.type}-projects ul`);
+        project.update(this.switchProject.bind(this), this.type);
     }
 
-    switchProject(productId) {
+    switchProject(projectId) {
         // const productsIndex = this.products.findIndex(p => p.id === productId);
         // this.products.slice(productsIndex, 1);
-        this.switchHandler(this.products.find(p => p.id === productId));
-        this.products = this.products.filter(p => p.id !== productId);
+        this.switchHandler(this.porjects.find(p => p.id === projectId));
+        this.porjects = this.porjects.filter(p => p.id !== projectId);
     }
 }
 
