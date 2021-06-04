@@ -24,7 +24,7 @@ class Tooltip {
 
     detach = () => {
         this.element.remove();
-        // this.element.parentElement.removeChild(this.element);    for older browser
+        // this.element.parentElement.removeChild(this.element);    // for older browser
     }
 
     attach() {
