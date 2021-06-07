@@ -167,7 +167,24 @@ class App {
     finishedProjectsList.setSwitchHandlerFunction(
       activeProjectsList.addProject.bind(activeProjectsList)
     );
+
+    // this.startAnalytics();
+    document.getElementById('start-analytics-btn').addEventListener('click', this.startAnalytics);
+    
+    // equal to => alert("Hi there.. ");
+    // const someScript = document.createElement('script');
+    // someScript.textContent = 'alert("Hi there.. ")';
+    // document.head.append(someScript);
+
   }
+
+  static startAnalytics() {
+    const analyticsScript = document.createElement('script');
+    analyticsScript.src = '/assets/scripts/analytics.js';
+    analyticsScript.defer = true;
+    document.head.append(analyticsScript);
+  }
+
 }
 
 App.init();
