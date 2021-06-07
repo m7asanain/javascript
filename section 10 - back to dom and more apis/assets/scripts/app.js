@@ -169,12 +169,18 @@ class App {
     );
 
     // this.startAnalytics();
-    document.getElementById('start-analytics-btn').addEventListener('click', this.startAnalytics);
+    // document.getElementById('start-analytics-btn').addEventListener('click', this.startAnalytics);
     
     // equal to => alert("Hi there.. ");
     // const someScript = document.createElement('script');
     // someScript.textContent = 'alert("Hi there.. ")';
     // document.head.append(someScript);
+
+    const timerId = setTimeout(this.startAnalytics, 3000);
+
+    document.getElementById('stop-analytics-btn').addEventListener('click', () => {
+      clearTimeout(timerId);  // it should press before start count
+    });
 
   }
 
