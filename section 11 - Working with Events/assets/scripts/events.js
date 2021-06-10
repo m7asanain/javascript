@@ -1,4 +1,4 @@
-const buttons = document.querySelectorAll('button');
+const button = document.querySelector('button');
 
 // button.onclick = function() {
 
@@ -37,5 +37,19 @@ const form = document.querySelector('form');
 
 form.addEventListener('submit', event => {
   event.preventDefault();
+  console.log(event);
+});
+
+const div = document.querySelector('div');
+
+div.addEventListener('click', event => {
+  console.log('CLICKED DIV');
+  console.log(event);
+}); // true make the div clicked first (false is defelt)
+
+button.addEventListener('click', event => {
+  event.stopPropagation();  // prevents further propagation of the current event in the capturing and bubbling phases.
+  // event.stopImmediatePropagation(); // prevents other listeners of the same event from being called.
+  console.log('CLICKED BUTTON');
   console.log(event);
 });
