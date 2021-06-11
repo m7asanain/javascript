@@ -47,11 +47,12 @@ div.addEventListener('click', event => {
   console.log(event);
 }); // true make the div clicked first (false is defelt)
 
-button.addEventListener('click', event => {
+button.addEventListener('click', function(event) {
   event.stopPropagation();  // prevents further propagation of the current event in the capturing and bubbling phases.
   // event.stopImmediatePropagation(); // prevents other listeners of the same event from being called.
   console.log('CLICKED BUTTON');
   console.log(event);
+  console.log(this);
 });
 
 const listItems = document.querySelectorAll('li');  // method 1*
@@ -64,10 +65,11 @@ const list = document.querySelector('ul');
   // });
 // });
 
-list.addEventListener('click', event => {
+list.addEventListener('click', function(event) {
   // console.log(event.currentTarget);
   // event.target.classList.toggle('highlight');
   event.target.closest('li').classList.toggle('highlight');
   // form.submit();   this will submit the when click any item
   button.click();
+  console.log(this);
 });
