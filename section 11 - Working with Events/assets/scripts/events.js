@@ -68,4 +68,6 @@ list.addEventListener('click', event => {
   // console.log(event.currentTarget);
   // event.target.classList.toggle('highlight');
   event.target.closest('li').classList.toggle('highlight');
+  // form.submit();   this will submit the when click any item
+  button.click();
 });
