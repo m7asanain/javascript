@@ -29,3 +29,26 @@ function printHobbies(h) {
 }
 
 printHobbies(hobbies);
+
+console.log('-'.repeat(10));
+
+// function calculateTax(amount, tax) {
+//     return amount * tax;
+// }
+
+// const vatAmount = calculateTax(100, 0.19);
+// const incomeAmount = calculateTax(100, 0.25);
+
+function createTaxCalculater(tax) {
+    function calculateTax(amount) {
+        return amount * tax;
+    }
+    return calculateTax;
+}
+
+const calculateVatAmount = createTaxCalculater(0.19);
+const calculateIncomeAmount = createTaxCalculater(0.25);
+
+
+console.log(calculateVatAmount(100));
+console.log(calculateVatAmount(200));
