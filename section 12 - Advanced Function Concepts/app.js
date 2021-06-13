@@ -92,3 +92,51 @@ function powerOf(x, n) {
 }
 
 console.log(powerOf(2, 3));     // 2 * 2 * 2
+
+ 
+console.log('-'.repeat(10));
+
+
+const myself = {
+    name: 'Mustafa',
+    friends: [
+        {
+            name: 'Abdullah',
+            friends: [
+                {
+                    name: 'Muhammed',
+                    friends: [
+                        {
+                            name: 'Abdullrahman',
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            name: 'Abbas',
+            friends: [
+                {
+                    name: 'Ibrahim',
+                }
+            ]
+        }
+    ],
+};
+
+function getFriendName(person) {
+    const collectedNames = [];
+
+    if (!person.friends) {
+        return [];
+    }
+
+    for (const friend of person.friends) {
+        collectedNames.push(friend.name);
+        collectedNames.push(...getFriendName(friend));
+    };
+
+    return collectedNames;
+}
+
+console.log(getFriendName(myself));
