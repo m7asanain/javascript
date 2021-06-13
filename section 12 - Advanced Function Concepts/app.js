@@ -39,7 +39,7 @@ console.log('-'.repeat(10));
 // const vatAmount = calculateTax(100, 0.19);
 // const incomeAmount = calculateTax(100, 0.25);
 
-function createTaxCalculater(tax) {
+function createTaxCalculater(tax) {     // factory function
     function calculateTax(amount) {
         return amount * tax;
     }
@@ -52,3 +52,19 @@ const calculateIncomeAmount = createTaxCalculater(0.25);
 
 console.log(calculateVatAmount(100));
 console.log(calculateVatAmount(200));
+
+console.log('-'.repeat(10));
+
+let userName = 'Mustafa';
+
+function greetUser() {
+    // let name = userName;
+    let name = 'Rola';  // function priority
+    console.log('Hi ' + name);
+}
+
+let name = 'Hasanain';  // second priority
+
+userName = 'M7asanain';
+
+greetUser();
