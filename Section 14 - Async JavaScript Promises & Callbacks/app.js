@@ -6,3 +6,24 @@ function trackUserHandler() {
 }
 
 button.addEventListener('click', trackUserHandler);
+
+let result = 0;
+
+for (let i = 0; i < 100000000; i++) {
+  result += i;
+}
+
+console.log(result);
+
+
+// const greet = () => {
+//   console.log('Hi');
+// }
+
+// const showAlert = () => {
+//   console.log('Danger!');
+// }
+
+// setTimeout(showAlert, 2000);
+
+// greet();
