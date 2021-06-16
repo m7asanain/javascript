@@ -4,10 +4,15 @@ const output = document.querySelector('p');
 
 function trackUserHandler() {
   navigator.geolocation.getCurrentPosition(postData => {
-    console.log('The location is: ', postData);
+    setTimeout(() => {
+      console.log('The location is: ', postData);
+    }, 2000);
   }, error => {
     console.log('couldn\'t get the location.', error);
   });
+  setTimeout(() => {
+    console.log('Timer done!');
+  }, 0);
   console.log('Getting location...');
 }
 
