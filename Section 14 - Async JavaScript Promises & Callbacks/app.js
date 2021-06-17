@@ -1,6 +1,17 @@
 const button = document.querySelector('button');
 const output = document.querySelector('p');
 
+const getPosition = (opts) => {
+  const promis = new Promise((resolve, reject) => {
+    navigator.geolocation.getCurrentPosition(success => {
+      resolve(success);
+    }, error => {
+
+    }, opts);
+  });
+  return promis;
+};
+
 const setTimer = (duration) => {
   const promis = new Promise((resolve, reject) => {
     setTimeout(() => {
@@ -11,12 +22,13 @@ const setTimer = (duration) => {
 };
 
 function trackUserHandler() {
-  navigator.geolocation.getCurrentPosition(postData => {
-    setTimer(2000).then(date => {
-      console.log(date, postData);
-    });
-  }, error => {
-    console.log('couldn\'t get the location.', error);
+  let positionData;
+  getPosition().then(posData => {
+    positionData = posData;
+    return setTimer(2000);
+  })
+  .then(data => {
+    console.log(data, positionData);
   });
   setTimer(0).then(() => {
     console.log('Timer done!');
@@ -26,7 +38,7 @@ function trackUserHandler() {
 
 button.addEventListener('click', trackUserHandler);
 
-let result = 0;
+// let result = 0;
 
 // for (let i = 0; i < 100000000; i++) {
 //   result += i;
