@@ -21,44 +21,29 @@ const setTimer = (duration) => {
   return promis;
 };
 
-function trackUserHandler() {
-  let positionData;
-  getPosition().then(posData => {
-    positionData = posData;
-    return setTimer(2000);
-  })
-  .catch(err => {
-    console.log(err);
-    return 'on we go...';
-  })
-  .then(data => {
-    console.log(data, positionData);
-  });
-  setTimer(1000).then(() => {
-    console.log('Timer done!');
-  });
-  console.log('Getting location...');
+async function trackUserHandler() {
+  // let positionData;
+  
+  const posData = await getPosition();
+  const timerData = await setTimer(2000);
+  console.log(timerData, posData);
+
+    // .then(posData => {
+    //   positionData = posData;
+    //   return setTimer(2000);
+    // })
+    //   .catch(err => {
+    //     console.log(err);
+    //     return 'on we go...';
+    //   })
+    //   .then(data => {
+    //     console.log(data, positionData);
+    //   });
+
+  // setTimer(1000).then(() => {
+  //   console.log('Timer done!');
+  // });
+  // console.log('Getting location...');
 }
 
 button.addEventListener('click', trackUserHandler);
-
-// let result = 0;
-
-// for (let i = 0; i < 100000000; i++) {
-//   result += i;
-// }
-
-// console.log(result);
-
-
-// const greet = () => {
-//   console.log('Hi');
-// }
-
-// const showAlert = () => {
-//   console.log('Danger!');
-// }
-
-// setTimeout(showAlert, 2000);
-
-// greet();
