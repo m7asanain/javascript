@@ -3,17 +3,25 @@ const postTemplate = document.getElementById('single-post');
 
 const xhr = new XMLHttpRequest();
 
-xhr.open('GET', 'https://jsonplaceholder.typicode.com/posts');
+function sendHttpRequest(method, url) {
+    const promise = new Promise((resolve, reject) => {
+        xhr.open(method, url);
 
-xhr.responseType = 'json';   // *same, more convenience
+        xhr.responseType = 'json';
 
-xhr.onload = function() {   // addEventListener is not really supported
-    // console.log(xhr.response);  // return all data
+        xhr.onload = function() {
+            resolve(xhr.response);
+        }
+        xhr.send();
+    });
+    return promise;
+}
 
-    // const listOfPosts = xhr.response;
-    // listOfPosts.push({});   //  not work because it respond to return json no js
-
-    // const listOfPosts = JSON.parse(xhr.response);   // *same
+async function fetchPosts() {
+    const responseData = await sendHttpRequest(
+        'GET',
+        'https://jsonplaceholder.typicode.com/posts'
+    );
 
     const listOfPosts = xhr.response;  
     console.log(listOfPosts);
@@ -26,4 +34,4 @@ xhr.onload = function() {   // addEventListener is not really supported
     }
 }
 
-xhr.send();
+fetchPosts();
