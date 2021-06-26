@@ -7,10 +7,11 @@ const postList = document.querySelector('ul');
 function sendHttpRequest(method, url, data) {
     return fetch(url, {
         method: method,
-        body: JSON.stringify(data),
-        headers: {
-            'Content-Type': 'application/json'
-        }
+        // body: JSON.stringify(data),
+        body: data
+        // headers: {
+        //     'Content-Type': 'application/json'
+        // }
     }).then(response => {
         if (response.status >= 200 && response.status < 300) {
             return response.json();     // success state
@@ -54,7 +55,16 @@ async function createPost(title, content) {
         body: content,
         userId: userId,
     };
-    sendHttpRequest('POST', 'https://jsonplaceholder.typicode.com/posts', post);
+
+    const fd = new FormData(form);
+    // fd.append('title', title);
+    // fd.append('content', content);
+    fd.append('userId', userId);
+
+    // fd.append('someFile', , 'photo.png');    // easily add files
+
+
+    sendHttpRequest('POST', 'https://jsonplaceholder.typicode.com/posts', fd);
 }
 
 // fetchPosts();
