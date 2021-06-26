@@ -5,26 +5,9 @@ const fetchButton = document.querySelector('#available-posts button');
 const postList = document.querySelector('ul');
 
 function sendHttpRequest(method, url, data) {
-    const promise = new Promise((resolve, reject) => {
-        const xhr = new XMLHttpRequest();
-        xhr.open(method, url);
-
-        xhr.responseType = 'json';
-
-        xhr.onload = function() {
-            if (xhr.status >= 200 && xhr.status < 300) {
-                resolve(xhr.response);
-            } else {
-                reject(new Error('Something went wrong!')); // if there was an error (link is wrong)
-            }
-        }
-        xhr.onerror = function() {
-            reject(new Error('Faild to send request!')); // it will happed if we fail with sending request (connection problem)
-        }
-
-        xhr.send(JSON.stringify(data));
+    return fetch(url).then(response => {
+        return response.json();
     });
-    return promise;
 }
 
 async function fetchPosts() {
