@@ -4,38 +4,37 @@ const form = document.querySelector('#new-post form');
 const fetchButton = document.querySelector('#available-posts button');
 const postList = document.querySelector('ul');
 
-function sendHttpRequest(method, url, data) {
-    return fetch(url, {
-        method: method,
-        // body: JSON.stringify(data),
-        body: data
-        // headers: {
-        //     'Content-Type': 'application/json'
-        // }
-    }).then(response => {
-        if (response.status >= 200 && response.status < 300) {
-            return response.json();     // success state
-        } else {
-            return response.json().then(errData => {
-                console.log(errData);
-                throw new Error('Something went wrong - server-side error');
-            });
-        }
-    })
-    .catch(error => {
-        console.log(error);
-        throw new Error('Something went wrong!');
-    })
-}
+// function sendHttpRequest(method, url, data) {
+//     return fetch(url, {
+//         method: method,
+//         // body: JSON.stringify(data),
+//         body: data
+//         // headers: {
+//         //     'Content-Type': 'application/json'
+//         // }
+//     }).then(response => {
+//         if (response.status >= 200 && response.status < 300) {
+//             return response.json();     // success state
+//         } else {
+//             return response.json().then(errData => {
+//                 console.log(errData);
+//                 throw new Error('Something went wrong - server-side error');
+//             });
+//         }
+//     })
+//     .catch(error => {
+//         console.log(error);
+//         throw new Error('Something went wrong!');
+//     })
+// }
 
 async function fetchPosts() {
     try {
-        const responseData = await sendHttpRequest(
-            'GET',
+        const response = await axios.get(
             'https://jsonplaceholder.typicode.com/posts'
         );
     
-        const listOfPosts = responseData; 
+        const listOfPosts = response.data;  // without ".data" it will not work
         for (const post of listOfPosts) {
             const postEl = document.importNode(postTemplate.content, true);
             postEl.querySelector('h2').textContent = post.title.toUpperCase();
@@ -63,8 +62,8 @@ async function createPost(title, content) {
 
     // fd.append('someFile', , 'photo.png');    // easily add files
 
-
-    sendHttpRequest('POST', 'https://jsonplaceholder.typicode.com/posts', fd);
+    const response = await axios.post('https://jsonplaceholder.typicode.com/posts', fd);
+    console.log(response);
 }
 
 // fetchPosts();
@@ -82,6 +81,6 @@ form.addEventListener('submit', event => {
 postList.addEventListener('click', event => {
     if (event.target.tagName === 'BUTTON') {
         const postId = event.target.closest('li').id;
-        sendHttpRequest('DELETE', `https://jsonplaceholder.typicode.com/posts/${postId}`);
+        axios.delete(`https://jsonplaceholder.typicode.com/posts/${postId}`);
     }
 });
