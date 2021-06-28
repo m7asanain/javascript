@@ -1,0 +1,19 @@
+{
+  "name": "javascript-tooling-and-workflows",
+  "version": "1.0.0",
+  "description": "JavaScript - The Complete Guide",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/m7asanain/javascript.git"
+  },
+  "author": "Mustafa Alkamali",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/m7asanain/javascript/issues"
+  },
+  "homepage": "https://github.com/m7asanain/javascript#readme"
+}
