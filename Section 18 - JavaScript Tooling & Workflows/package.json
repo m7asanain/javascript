@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/m7asanain/javascript/issues"
   },
-  "homepage": "https://github.com/m7asanain/javascript#readme"
+  "homepage": "https://github.com/m7asanain/javascript#readme",
+  "devDependencies": {
+    "eslint": "^7.29.0"
+  }
 }
