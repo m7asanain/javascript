@@ -208,7 +208,8 @@
         "quotes": [
             "error",
             "single"
-        ]
+        ],
+        "no-undef": "off"
         // "radix": "error",
         // "require-atomic-updates": "error",
         // "require-await": "error",
