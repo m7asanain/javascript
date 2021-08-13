@@ -3,11 +3,31 @@ class PlaceFinder {   // main class
     const addressForm = document.querySelector('form');
     const locateUserBtn = document.getElementById('locate-btn');
 
-    addressForm.addEventListener('click', findAddressHandler);
-    locateUserBtn.addEventListener('click', locateUserHandler);
+    addressForm.addEventListener('click', this.findAddressHandler);
+    locateUserBtn.addEventListener('click', this.locateUserHandler);
   }
 
-  findAddressHandler() {};
+  findAddressHandler() {
+    
+  }
 
-  locateUserHandler() {};
+  locateUserHandler() {
+    if (!navigator.geolocation) {
+      alert('Your browser does\'nt support getting location - please try newer browser or enter your address manully!');
+      return;
+    }
+    navigator.geolocation.getCurrentPosition(
+      seccessResult => {
+        const coordinates = {
+          lat: seccessResult.coords.latitude,
+          lng: seccessResult.coords.longitude,
+        }
+        console.log(coordinates);
+      }, error => {
+        alert('We are not able to get your location - enter your address manully!');
+      }
+    );
+  }
 }
+
+const placeFinder = new PlaceFinder();
