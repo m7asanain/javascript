@@ -1,3 +1,5 @@
+import '/core-js';
+
 const button = document.querySelector('button');
 const textParagraph = document.querySelector('p');
 
@@ -6,14 +8,14 @@ button.addEventListener('click', () => {
   if (navigator.clipboard) {
     navigator.clipboard
     .writeText(text)
-    .then(result => {
+    .then(() => {
       console.log('Copied!');
     })
     .catch(error => {
       console.log(error);
     });
   } else {
-    alert('Feature does\'nt work with your browser version.')
+    alert('Feature does\'nt work with your browser version.');
   }
 
 }); 
