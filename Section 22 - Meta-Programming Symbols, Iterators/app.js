@@ -20,6 +20,13 @@ const courseHandler = {
       return 0
     }
     return obj[propertyName] || 'NOT FOUND!';
+  },
+  set(obj, propertyName, newValue) {
+    console.log('Sending data...');
+    if (propertyName === 'rating') {
+      return; // block access
+    }
+    obj[propertyName] = newValue;
   }
 }
 
@@ -27,4 +34,5 @@ const pCourse = new Proxy(course, courseHandler);
 // console.log(pCourse.title);
 // console.log(course, pCourse);
 
-console.log(pCourse.title, pCourse.length, pCourse.price);
+pCourse.rating = 5;
+console.log(pCourse.title, '-' , pCourse.length, '-' , pCourse.rating);
