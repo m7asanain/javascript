@@ -21,15 +21,23 @@ console.log(Symbol('uid') === Symbol('uid'));
 console.log(user.toString()); // .toString() => will give: [object Object]*
 
 const company = {
-  curEmployee: 0,
+  // curEmployee: 0,
   employees: ['Mustafa', 'Abbas', 'Abdullah'],
-  next() {
-    if (this.curEmployee >= this.employees.length) {
-      return { value: this.curEmployee, done: true };
+  // next() {
+  //   if (this.curEmployee >= this.employees.length) {
+  //     return { value: this.curEmployee, done: true };
+  //   }
+  //   const returnValue = { value: this.employees[this.curEmployee], done: false }; // [this.curEmployee]: return list of names
+  //   this.curEmployee++;
+  //   return returnValue;
+  // },
+  [Symbol.iterator]: function* employeeGenerator() {
+    let currentEmployee = 0;
+    
+    while (currentEmployee < this.employees.length) {
+      yield this.employees[currentEmployee];
+      currentEmployee++;
     }
-    const returnValue = { value: this.employees[this.curEmployee], done: false }; // [this.curEmployee]: return list of names
-    this.curEmployee++;
-    return returnValue;
   }
 };
 
@@ -39,10 +47,30 @@ const company = {
 // console.log(company.next());  // {value: 3, done: true}
 // console.log(company.next());  // {value: 3, done: true}
 
-let employee = company.next();
+// let employee = company.next();
 
-while (!employee.done) {
-  console.log(employee.value);
-  employee = company.next();
+// while (!employee.done) {
+//   console.log(employee.value);
+//   employee = company.next();
+// }
+// console.log('That\'s it!');
+
+// this for *[Symbol.iterator]
+for (const employee of company) { // Uncaught TypeError: company is not iterable
+  console.log(employee);
 }
-console.log('That\'s it!');
+
+console.log([...company]);
+
+// console.log(company.getEmployee().next());
+// console.log(company.getEmployee().next());
+// console.log(company.getEmployee().next());
+
+// this for *getEmployee
+// const it = company.getEmployee();
+
+// console.log(it.next());
+// console.log(it.next());
+// console.log(it.next());
+// console.log(it.next());
+// console.log(it.next());
