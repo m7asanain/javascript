@@ -14,4 +14,4 @@ fs.writeFile('user-data.txt', 'username=Mustafa', err => {
   } else {
     console.log('Wrote to file..');
   }
-})
+});

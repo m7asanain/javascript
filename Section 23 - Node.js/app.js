@@ -3,8 +3,7 @@ const bodyParser = require('body-parser');
 
 const app = express();
 
-app.use(express.urlencoded({extended: true}));
-app.use(express.json());
+app.use(bodyParser.urlencoded({extended: false}));
 
 app.use((req, res, next) => {
   res.setHeader('Content-Type', 'text/html');
@@ -12,8 +11,8 @@ app.use((req, res, next) => {
 });
 
 app.use((req, res, next) => {
-  const username = req.body.username || 'Unknown User!';
-  res.send(`<h1>Hi ${username}</h1><form method="POST" action="/"><input name="username" type="text"><button type="submit">Send</button></form>`);
+  const userName = req.body.username || 'Unknown User';
+  res.send(`<h1>Hi ${userName}</h1><form method="POST" action="/"><input name="username" type="text"><button type="submit">Send</button></form>`);
 });
 
 app.listen(3000);
